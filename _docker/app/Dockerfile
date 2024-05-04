@@ -56,14 +56,13 @@ RUN apt-get install -y nodejs
 # Настройка supervisor
 COPY ./_docker/supervisor/laravel-worker.conf /etc/supervisor/conf.d/laravel-worker.conf
 
-
-#RUN composer install \
-#      --no-interaction \
-#      --no-plugins \
-#      --no-suggest \
-#      --no-scripts \
-#      --no-autoloader \
-#      --prefer-dist
+RUN composer install \
+      --no-interaction \
+      --no-plugins \
+      --no-suggest \
+      --no-scripts \
+      --no-autoloader \
+      --prefer-dist
 
 RUN composer dump-autoload  --no-scripts --optimize && \
     chown -R root:www-data /var/www && \
@@ -71,9 +70,6 @@ RUN composer dump-autoload  --no-scripts --optimize && \
     chmod 755 -R /var/www && \
     chmod -R 775 /var/www/storage && \
     chmod -R 775 /var/www/bootstrap/cache
-
-RUN     chown -R root:www-data /var/www && \
-        chmod 755 -R /var/www
 
 WORKDIR /var/www
 
