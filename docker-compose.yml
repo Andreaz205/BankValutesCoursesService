@@ -12,7 +12,7 @@ services:
             - "8000:80"
         depends_on:
             - app
-        container_name: project_nginx
+        container_name: omg_nginx
         networks:
             - application
 
@@ -25,15 +25,15 @@ services:
             - /var/www/storage/app/public/:/var/www/storage/app/public/
             - ./_docker/app/zzz-xdebug.ini:/usr/local/etc/php/conf.d/zzz-xdebug.ini
             - /var/www/storage/app/public/:/var/www/public/storage
-        container_name: project_app
+        container_name: omg_app
         environment:
             DB_CONNECTION: pgsql
-            DB_HOST: project_db
+            DB_HOST: omg_db
             DB_PORT: 5432
             DB_DATABASE: laravel
             DB_USERNAME: root
             DB_PASSWORD: password
-            REDIS_HOST: project_redis
+            REDIS_HOST: omg_redis
             REDIS_PORT: 6379
             QUEUE_CONNECTION: redis
             PHP_IDE_CONFIG: "serverName=OMG"
@@ -52,7 +52,7 @@ services:
             POSTGRES_USER: root
             POSTGRES_PASSWORD: password
             POSTGRES_DB: laravel
-        container_name: project_db
+        container_name: omg_db
         ports:
             - "5432:5432"
         networks:
@@ -66,7 +66,7 @@ services:
             test: [ "CMD", "redis-cli", "ping" ]
             retries: 3
             timeout: 5s
-        container_name: project_redis
+        container_name: omg_redis
         networks:
             - application
 
