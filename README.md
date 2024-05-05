@@ -7,3 +7,6 @@ docker-compose up -d что бы поднять сервис
 
 ## Эндпоинт
 https://localhost(либо ip для docker сети)/api/courses
+
+## После клонирования
+Нужно создать .env файл и сгенерировать ключ php artisan key:generate из подконтейнера project_app

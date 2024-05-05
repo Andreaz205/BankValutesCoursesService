@@ -63,6 +63,7 @@ RUN echo "alias a='artisan'" >> /root/.bashrc
 
 # Настройка supervisor
 COPY ./_docker/supervisor/laravel-worker.conf /etc/supervisor/conf.d/laravel-worker.conf
+<<<<<<< HEAD
 #
 #RUN composer install \
 #      --no-interaction \
@@ -78,6 +79,16 @@ COPY ./_docker/supervisor/laravel-worker.conf /etc/supervisor/conf.d/laravel-wor
 #    chmod 755 -R /var/www && \
 #    chmod -R 775 /var/www/storage && \
 #    chmod -R 775 /var/www/bootstrap/cache
+=======
+
+RUN composer install \
+      --no-interaction \
+      --no-plugins \
+      --no-suggest \
+      --no-scripts \
+      --no-autoloader \
+      --prefer-dist
+>>>>>>> 57ccac4ea9eb52bf1afd03d5cccce1277c444f79
 
 #RUN     chown -R root:www-data /var/www && \
 #        chmod 755 -R /var/www
@@ -97,11 +108,20 @@ ENTRYPOINT composer install \
     --prefer-dist && \
     composer dump-autoload  --no-scripts --optimize && \
     chown -R root:www-data /var/www && \
+<<<<<<< HEAD
     chmod 777 -R /var/www && \
     chmod -R 777 /var/www/storage && \
     chmod -R 777 /var/www/bootstrap/cache && \
     cp .env.example .env && \
     php artisan key:generate && \
     php-fpm
+=======
+#    chmod 755 -R /var/www
+    chmod 755 -R /var/www && \
+    chmod -R 775 /var/www/storage && \
+    chmod -R 775 /var/www/bootstrap/cache
+
+WORKDIR /var/www
+>>>>>>> 57ccac4ea9eb52bf1afd03d5cccce1277c444f79
 
 
